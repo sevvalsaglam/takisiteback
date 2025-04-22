@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5175")
 public class ProductController {
 
     @Autowired
@@ -33,5 +33,10 @@ public class ProductController {
     @GetMapping("/search")
     public List<Product> search(@RequestParam String q) {
         return productService.search(q);
+    }
+
+    @PostMapping
+    public Product addProduct(@RequestBody Product product) {
+        return productService.addProduct(product);
     }
 }

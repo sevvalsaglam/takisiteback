@@ -29,4 +29,9 @@ public class ProductService {
     public List<Product> search(String keyword) {
         return productRepository.findByTitleContainingIgnoreCase(keyword);
     }
+
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
+    }
 }
+
