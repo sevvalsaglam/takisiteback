@@ -1,24 +1,56 @@
 package com.takisite.backend.controller;
 
+import com.takisite.backend.dto.ProductRequest;
+import com.takisite.backend.dto.ProductResponse;
 import com.takisite.backend.model.Product;
 import com.takisite.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
+@CrossOrigin(origins = "http://localhost:5175")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
+    public List<ProductResponse> getAll() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/{id}")
+    public ProductResponse getById(@PathVariable Long id) {
+        return productService.getById(id);
+    }
+
+    @GetMapping("/category/{category}")
+    public List<ProductResponse> getByCategory(@PathVariable String category) {
+        return productService.getByCategory(category);
+    }
+
+
+    @GetMapping("/search")
+    public List<ProductResponse> search(@RequestParam String q) {
+        return productService.search(q);
+    }
+
+
+    @PostMapping
+    public Product addProduct(@RequestBody ProductRequest request) {
+        Product product = Product.builder()
+                .title(request.getTitle()) // ← burada hata alıyorsun
+                .category(request.getCategory())
+                .description(request.getDescription())
+                .price(request.getPrice())
+                .image(request.getImage())
+                .point(request.getPoint())
+                .build();
+
+        return productService.addProduct(product);
     }
 
 }

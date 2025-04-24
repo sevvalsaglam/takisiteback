@@ -1,4 +1,3 @@
-
 package com.takisite.backend.dto;
 
 import lombok.*;
@@ -8,8 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductResponse {
-    private Long id;
+public class ProductRequest {
     private String title;
     private String category;
     private String description;

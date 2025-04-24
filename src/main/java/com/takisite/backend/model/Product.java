@@ -3,7 +3,6 @@ package com.takisite.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Entity
 @Table(name = "products")
 @Getter
@@ -27,6 +26,4 @@ public class Product {
     private String image;
 
     private Double point; // 0.0 – 5.0 arası
-
-    // Favoriler ve Sepet ilişkileri tersten yazılmaz çünkü bu tarafa ihtiyacımız olmayacak
 }

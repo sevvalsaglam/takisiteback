@@ -1,5 +1,6 @@
 package com.takisite.backend.controller;
 
+import com.takisite.backend.dto.FavoriteResponse;
 import com.takisite.backend.model.Favorite;
 import com.takisite.backend.model.User;
 import com.takisite.backend.service.FavoriteService;
@@ -21,11 +22,12 @@ public class FavoriteController {
     private UserService userService;
 
     @GetMapping("/{email}")
-    public List<Favorite> getFavorites(@PathVariable String email) {
+    public List<FavoriteResponse> getFavorites(@PathVariable String email) {
         return userService.findByEmail(email)
                 .map(favoriteService::getFavoritesByUser)
                 .orElse(List.of());
     }
+
 
     @PostMapping
     public Favorite addFavorite(@RequestBody Favorite favorite) {

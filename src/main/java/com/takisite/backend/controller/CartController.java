@@ -1,5 +1,6 @@
 package com.takisite.backend.controller;
 
+import com.takisite.backend.dto.CartItemResponse;
 import com.takisite.backend.model.CartItem;
 import com.takisite.backend.model.User;
 import com.takisite.backend.service.CartService;
@@ -21,10 +22,12 @@ public class CartController {
     private UserService userService;
 
     @GetMapping("/{email}")
-    public List<CartItem> getCart(@PathVariable String email) {
-        User user = userService.findByEmail(email).orElse(null);
-        return user != null ? cartService.getCartItemsByUser(user) : List.of();
+    public List<CartItemResponse> getCart(@PathVariable String email) {
+        return userService.findByEmail(email)
+                .map(cartService::getCartItemResponsesByUser)
+                .orElse(List.of());
     }
+
 
     @PostMapping
     public CartItem addOrUpdate(@RequestBody CartItem item) {
