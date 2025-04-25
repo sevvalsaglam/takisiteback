@@ -1,4 +1,3 @@
-
 package com.takisite.backend.dto;
 
 import lombok.*;

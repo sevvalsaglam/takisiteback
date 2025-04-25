@@ -42,20 +42,20 @@ public class ProductService {
                 .toList();
     }
 
-
     public Product addProduct(ProductRequest request) {
-        Product product = Product.builder()
-                .title(request.getTitle())
-                .category(request.getCategory())
-                .description(request.getDescription())
-                .price(request.getPrice())
-                .image(request.getImage())
-                .point(request.getPoint())
-                .build();
+        Product product = new Product();
+        product.setTitle(request.getTitle());
+        product.setCategory(request.getCategory());
+        product.setDescription(request.getDescription());
+        product.setPrice(request.getPrice());
+        product.setImage(request.getImage());
+        product.setPoint(request.getPoint());
+
         return productRepository.save(product);
     }
 
-    // Dönüşüm metodu (model → dto)
+
+    // Dönüşüm metodu (model → DTO)
     private ProductResponse convertToDto(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())

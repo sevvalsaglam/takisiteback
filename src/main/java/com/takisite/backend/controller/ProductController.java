@@ -32,25 +32,14 @@ public class ProductController {
         return productService.getByCategory(category);
     }
 
-
     @GetMapping("/search")
     public List<ProductResponse> search(@RequestParam String q) {
         return productService.search(q);
     }
 
-
     @PostMapping
     public Product addProduct(@RequestBody ProductRequest request) {
-        Product product = Product.builder()
-                .title(request.getTitle()) // ← burada hata alıyorsun
-                .category(request.getCategory())
-                .description(request.getDescription())
-                .price(request.getPrice())
-                .image(request.getImage())
-                .point(request.getPoint())
-                .build();
-
-        return productService.addProduct(product);
+        return productService.addProduct(request);
     }
 
 }
