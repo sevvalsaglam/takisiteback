@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -19,7 +20,7 @@ public class ProductService {
         return productRepository.findAll()
                 .stream()
                 .map(this::convertToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public ProductResponse getById(Long id) {
@@ -32,14 +33,14 @@ public class ProductService {
         return productRepository.findByCategoryIgnoreCase(category)
                 .stream()
                 .map(this::convertToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<ProductResponse> search(String keyword) {
         return productRepository.findByTitleContainingIgnoreCase(keyword)
                 .stream()
                 .map(this::convertToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public Product addProduct(ProductRequest request) {
@@ -54,17 +55,16 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-
-    // Dönüşüm metodu (model → DTO)
+    // ✅ Dönüşüm metodu (model → dto)
     private ProductResponse convertToDto(Product product) {
-        return ProductResponse.builder()
-                .id(product.getId())
-                .title(product.getTitle())
-                .category(product.getCategory())
-                .description(product.getDescription())
-                .price(product.getPrice())
-                .image(product.getImage())
-                .point(product.getPoint())
-                .build();
+        ProductResponse response = new ProductResponse();
+        response.setId(product.getId());
+        response.setTitle(product.getTitle());
+        response.setCategory(product.getCategory());
+        response.setDescription(product.getDescription());
+        response.setPrice(product.getPrice());
+        response.setImage(product.getImage());
+        response.setPoint(product.getPoint());
+        return response;
     }
 }

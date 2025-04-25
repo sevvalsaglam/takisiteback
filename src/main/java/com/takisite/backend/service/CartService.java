@@ -33,16 +33,19 @@ public class CartService {
     public List<CartItemResponse> getCartItemResponsesByUser(User user) {
         return cartItemRepository.findByUser(user)
                 .stream()
-                .map(item -> CartItemResponse.builder()
-                        .id(item.getId())
-                        .productId(item.getProduct().getId())
-                        .title(item.getProduct().getTitle())
-                        .image(item.getProduct().getImage())
-                        .price(item.getProduct().getPrice())
-                        .category(item.getProduct().getCategory())
-                        .point(item.getProduct().getPoint())
-                        .quantity(item.getQuantity())
-                        .build())
+                .map(item -> {
+                    CartItemResponse response = new CartItemResponse();
+                    response.setId(item.getId());
+                    response.setProductId(item.getProduct().getId());
+                    response.setTitle(item.getProduct().getTitle());
+                    response.setImage(item.getProduct().getImage());
+                    response.setPrice(item.getProduct().getPrice());
+                    response.setCategory(item.getProduct().getCategory());
+                    response.setPoint(item.getProduct().getPoint());
+                    response.setQuantity(item.getQuantity());
+                    return response;
+                })
                 .toList();
     }
+
 }

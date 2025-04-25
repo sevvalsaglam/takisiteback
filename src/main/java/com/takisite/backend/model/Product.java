@@ -1,15 +1,9 @@
 package com.takisite.backend.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "products")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Product {
 
     @Id
@@ -25,5 +19,77 @@ public class Product {
 
     private String image;
 
-    private Double point; // 0.0 – 5.0 arası
+    private Double point;
+
+    // -- Boş constructor
+    public Product() {}
+
+    // -- Parametreli constructor
+    public Product(Long id, String title, String category, Double price, String description, String image, Double point) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.price = price;
+        this.description = description;
+        this.image = image;
+        this.point = point;
+    }
+
+    // -- Getter ve Setter metodları
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Double getPoint() {
+        return point;
+    }
+
+    public void setPoint(Double point) {
+        this.point = point;
+    }
 }
