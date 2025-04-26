@@ -24,6 +24,7 @@ public class User {
     private String password;
     private String address;
 
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Favorite> favorites;
@@ -39,5 +40,10 @@ public class User {
     public String getPassword() {
         return this.password;
     }
+
+
+
+
+
 
 }
