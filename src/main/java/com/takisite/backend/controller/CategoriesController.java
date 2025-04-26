@@ -9,7 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
-@CrossOrigin(origins = "http://localhost:5175")  // React frontend için CORS ayarları
+@CrossOrigin(origins = {
+        "http://localhost:5175",
+        "https://takisite-sevval-saglam.vercel.app"
+})
+
 public class CategoriesController {
 
     @Autowired
