@@ -23,18 +23,18 @@ public class SecurityConfig {
     @Autowired
     private UserService userService;
 
-    // 🔐 HTTP Güvenlik Yapılandırması
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(AbstractHttpConfigurer::disable) // CORS'u istersen buradan kontrol edebilirsin (CORS global config'de açık)
-                .csrf(AbstractHttpConfigurer::disable) // CSRF koruması kapalı
+                .cors(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless API
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/products/**",
-                                "/api/categories/**",  // ❗ eksik olan bu!
+                                "/api/categories/**",
                                 "/api/users/**"
                         ).permitAll()
 
@@ -47,13 +47,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 🔐 Şifreleme motoru (login/register'da kullanılır)
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // 🔐 Authentication Manager (login işlemi için gerekli)
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();

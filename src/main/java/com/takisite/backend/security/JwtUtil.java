@@ -14,7 +14,6 @@ public class JwtUtil {
     private final String SECRET = "takidunyasi_super_secret_key_2024_verysecure"; // en az 32 karakter olmalı
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
-    // ✅ Token üret
     public String generateToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
@@ -24,7 +23,6 @@ public class JwtUtil {
                 .compact();
     }
 
-    // ✅ Token'dan email al
     public String extractEmail(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
@@ -34,7 +32,6 @@ public class JwtUtil {
                 .getSubject();
     }
 
-    // ✅ Token geçerli mi
     public boolean isTokenValid(String token) {
         try {
             Jwts.parserBuilder()
