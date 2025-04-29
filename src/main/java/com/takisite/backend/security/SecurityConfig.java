@@ -27,25 +27,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(request -> new org.springframework.web.cors.CorsConfiguration().applyPermitDefaultValues()))  // CORS'u aktif yapıyoruz ✅
                 .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless API
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/products/**",
                                 "/api/categories/**",
-                                "/api/users/**"
+                                "/api/users/**",
+                                "/api/favorites/**",
+                                "/api/cart/**"
                         ).permitAll()
-
                         .anyRequest().authenticated()
-                );
-
-
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // JWT filtresini ekle
+                )
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 
 
     @Bean

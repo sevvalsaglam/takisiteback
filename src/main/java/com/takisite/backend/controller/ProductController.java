@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 @CrossOrigin(origins = {
-        "http://localhost:5175",
+        "http://localhost:5173",
         "https://takisite-sevval-saglam.vercel.app"
 })
 
