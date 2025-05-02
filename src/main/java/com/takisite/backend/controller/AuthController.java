@@ -22,7 +22,7 @@ public class AuthController {
     private UserService userService;
 
     @Autowired
-    private JwtUtil jwtUtil; // Token üretmek için JwtUtil sınıfını kullanacağız
+    private JwtUtil jwtUtil;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
@@ -31,7 +31,7 @@ public class AuthController {
         }
         User savedUser = userService.register(user);
 
-        String token = jwtUtil.generateToken(savedUser.getEmail()); // Kullanıcının email bilgisi ile token oluştur
+        String token = jwtUtil.generateToken(savedUser.getEmail());
 
         Map<String, Object> response = new HashMap<>();
         response.put("user", savedUser);

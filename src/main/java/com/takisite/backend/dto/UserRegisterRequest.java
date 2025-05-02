@@ -7,7 +7,6 @@ public class UserRegisterRequest {
     private String password;
     private String address;
 
-    // Getter ve Setter'lar
     public String getName() {
         return name;
     }

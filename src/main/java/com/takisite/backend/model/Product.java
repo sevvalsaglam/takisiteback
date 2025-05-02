@@ -24,7 +24,6 @@ public class Product {
     // -- Boş constructor
     public Product() {}
 
-    // -- Parametreli constructor
     public Product(Long id, String title, String category, Double price, String description, String image, Double point) {
         this.id = id;
         this.title = title;
@@ -35,7 +34,6 @@ public class Product {
         this.point = point;
     }
 
-    // -- Getter ve Setter metodları
 
     public Long getId() {
         return id;

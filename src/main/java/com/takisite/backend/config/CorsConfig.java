@@ -16,7 +16,7 @@ public class CorsConfig {
         config.addAllowedOrigin("https://takisite-sevval-saglam.vercel.app");
         config.setAllowCredentials(true);
         config.addAllowedHeader("*");
-        config.addAllowedMethod("*"); // <--- Burada OPTIONS dahil tüm methodlara izin veriyoruz
+        config.addAllowedMethod("*");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

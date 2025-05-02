@@ -15,7 +15,6 @@ public class Categories {
     private String slug;
     private String image;
 
-    // Getter ve Setter metotları
     public Long getId() {
         return id;
     }

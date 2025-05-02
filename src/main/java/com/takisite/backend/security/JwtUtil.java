@@ -11,7 +11,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String SECRET = "takidunyasi_super_secret_key_2024_verysecure"; // en az 32 karakter olmalı
+    private final String SECRET = "takidunyasi_super_secret_key_2024_verysecure";
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
     public String generateToken(String email) {

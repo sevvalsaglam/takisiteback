@@ -19,7 +19,6 @@ public class CategoriesController {
     @Autowired
     private CategoriesService categoriesService;
 
-    // Tüm kategorileri listele
     @GetMapping
     public List<Categories> getAllCategories() {
         return categoriesService.getAllCategories();

@@ -30,7 +30,7 @@ public class FavoriteController {
 
     @GetMapping
     public List<FavoriteResponse> getFavorites(Authentication authentication) {
-        String email = authentication.getName(); // JWT'den gelen kullanıcı email
+        String email = authentication.getName();
         return userService.findByEmail(email)
                 .map(favoriteService::getFavoritesByUser)
                 .orElse(List.of());
@@ -49,7 +49,6 @@ public class FavoriteController {
         Favorite favorite = new Favorite();
         favorite.setUser(user);
 
-        // Product'ı da oluşturmalıyız sadece ID'siyle
         Product product = new Product();
         product.setId(productId);
         favorite.setProduct(product);

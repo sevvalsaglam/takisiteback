@@ -13,7 +13,6 @@ public class CategoriesService {
     @Autowired
     private CategoriesRepository categoriesRepository;
 
-    // Tüm kategorileri al
     public List<Categories> getAllCategories() {
         return categoriesRepository.findAll();
     }

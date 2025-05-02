@@ -55,7 +55,6 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    // ✅ Dönüşüm metodu (model → dto)
     private ProductResponse convertToDto(Product product) {
         ProductResponse response = new ProductResponse();
         response.setId(product.getId());

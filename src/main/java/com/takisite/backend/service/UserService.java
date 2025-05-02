@@ -17,7 +17,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    // 🔐 Spring Security bu metodu JWT doğrulaması sırasında kullanır
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository
@@ -27,7 +26,7 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
-                Collections.emptyList() // roller eklemek istersen burada yaparsın
+                Collections.emptyList()
         );
     }
 
